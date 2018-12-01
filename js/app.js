@@ -7,7 +7,7 @@ let score=0;
 class Enemy {
   constructor(x, y, v_enemy, rndm_enemy_art) {
     this.sprite = rndm_enemy_art; // rndm_enemy_art is the randomly selected file name of an enemy per lane
-    this.x = x;  //******* x + Math.random() * y
+    this.x = x;
     this.y = y;
     this.vel = v_enemy;
     this.enemyWidth = 101;
@@ -17,8 +17,8 @@ class Enemy {
 
   // update() : Updates the enemy's position, required method for game
   update(dt) {
-    if (this.x < this.canvasWidth) // this condition helps keep the enemy looping on the same lane within the canvas area
-      this.x += this.vel * dt; // 'dt' virtually keeps track of JS processing speed in a user's browser which helps maintain near consistent frame per second across devices. It is found by finding how much of time difference there is between each call.
+    if (this.x < this.canvasWidth) // condition to make sure enemy looping on the same lane within the canvas area
+      this.x += this.vel * dt; // 'dt' virtually keeps track of processing speed in a user's browser which helps maintain near consistent frame per second across devices. It is found by finding how much of time difference there is between each call.
     else
       this.x = -this.enemyWidth;
   }
@@ -68,7 +68,7 @@ class Player {
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
   }
 
-  handleInput(key) {
+  handleInput(key) { // input handler
     switch (key) {
       case "up":
         if (this.y > 0) {
@@ -101,7 +101,6 @@ const enemy_art = [
 ];
 
 // Randomizing the enemy_art on each refresh
-// let rndm_enemy_art = enemy_art[Math.floor(Math.random() * enemy_art.length)];
 function randomEnemyArt() {
   return enemy_art[Math.floor(Math.random() * enemy_art.length)];
 }
